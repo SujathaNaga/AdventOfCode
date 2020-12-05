@@ -2,7 +2,6 @@ class BreakOut(Exception): pass
 
 with open("input.txt","r") as file:
     entries = file.readlines()
-    entries_copy = entries
     
     try:
         for i in range(0, len(entries)):
