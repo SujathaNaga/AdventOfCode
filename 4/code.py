@@ -4,7 +4,6 @@
 import re
 keywords = ['byr', 'ecl', 'eyr', 'hcl', 'hgt', 'iyr',  'pid']
 keywords.sort()
-eye_color_list = ['amb', 'blu', 'brn', 'gry', 'grn' ,'hzl' ,'oth']
 
 valid_passport_count_a = 0 
 valid_passport_count_b = 0
@@ -46,35 +45,30 @@ with open("input.txt","r") as file:
                 
                 # whether the key's value is valid or not
                 valid_value = False 
-                if key != 'cid':
-                    value = value.rstrip('\r\n') # remove windows end of line
+                
+                value = value.rstrip('\r\n') # remove windows end of line
                     
-                    if key == 'byr' and int(value) >= 1920 and int(value) <= 2002:
-                            valid_value = True
-                    elif (key == 'ecl') and (value in eye_color_list):
-                        valid_value = True
-                    elif key == 'iyr' and int(value) >= 2010 and int(value) <= 2020:
-                            valid_value = True
-                    elif key == 'eyr' and int(value) >= 2020 and int(value) <= 2030:
-                            valid_value = True
-                    elif key == 'hgt':
-                        if 'cm' in value:
-                            h = int(value.split('cm')[0])
-                            if h >= 150 and h <= 193:
-                                valid_value = True
-                        elif 'in' in value:
-                            h = int(value.split('in')[0])
-                            if h >= 59 and h <=76:
-                                valid_value = True
-                    elif key == 'hcl' and re.search("^#[0-9a-f]{6}", value):
-                        valid_value = True
-                    elif key == 'pid' and re.search("^[0-9]{9}$", value):
-                        valid_value = True
-
+                if key == 'byr' :
+                        valid_value =  1920 <= int(value) <= 2002
+                elif (key == 'ecl'):
+                    valid_value = value in  ['amb', 'blu', 'brn', 'gry', 'grn' ,'hzl' ,'oth']
+                elif key == 'iyr':
+                        valid_value =  2010 <= int(value) <= 2020
+                elif key == 'eyr':
+                        valid_value = 2020 <= int(value) <= 2030
+                elif key == 'hgt':
+                    if 'cm' in value:
+                            valid_value = 150 <= int(value.split('cm')[0]) <= 193
+                    elif 'in' in value:
+                        valid_value = 59 <= int(value.split('in')[0]) <= 76
+                elif key == 'hcl' :
+                    valid_value = re.search("^#[0-9a-f]{6}", value)
+                elif key == 'pid' :
+                    valid_value = re.search("^[0-9]{9}$", value)             
                     
-                    if valid_value:
-                        given_keywords.append(key)
-                        debug_given_items.append(key+":"+value) # for debugging
+                if valid_value:
+                    given_keywords.append(key)
+                    debug_given_items.append(key+":"+value) # for debugging
                     
                         
         if (i < len(entries) - 1 and entries[i+1] == '\n') or i ==len(entries) -1:
@@ -84,7 +78,7 @@ with open("input.txt","r") as file:
 
                 # for debugging
                 debug_given_items.sort()
-                print("b) " + str(valid_passport_count_b)+":"+str(debug_given_items))
+                #print("b) " + str(valid_passport_count_b)+":"+str(debug_given_items))
                 
            
             # reset
