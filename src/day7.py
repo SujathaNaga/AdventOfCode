@@ -36,7 +36,7 @@ for row in rows:
         inner_bag = inner_bag.replace(' bag','')
 
         # split string
-        i_list = inner_bag.split(' ')
+        i_list = inner_bag.split()
         inner_bag = ' '.join(i_list[1:3])
         inner_to_outer_map[inner_bag].append(outer)
 
@@ -76,7 +76,7 @@ for row in rows:
         inner_bag = inner_bag.replace(' bag','')
 
         # split string
-        i_list = inner_bag.split(' ')
+        i_list = inner_bag.split()
         inner_bag = ' '.join(i_list[1:3])
 
         # get number of bags

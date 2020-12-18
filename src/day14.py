@@ -12,7 +12,7 @@ for i in range(len(lines)):
         i+=1
         while i < len(lines) and lines[i].find("mask") == -1:
             f,v = lines[i].split(' = ')
-            memory=f[4:-1]
+            memory=f[4:]
 
             # create a list of single characters denoting 0 or 1 of the binary value of the value with leading zeros
             v= list(str(bin(int(v)).replace('0b','')))

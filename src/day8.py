@@ -16,7 +16,7 @@ def find_accumulator(rows):
         if row == '':
             break
 
-        op, value = row.split(' ')
+        op, value = row.split()
         if i not in unique_instruction_list:
                 unique_instruction_list.append(i)
         else:
