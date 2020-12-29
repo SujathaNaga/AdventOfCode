@@ -8,7 +8,7 @@ keywords.sort()
 valid_passport_count_a = 0 
 valid_passport_count_b = 0
 
-with open("input.txt","r") as file:
+with open("../input/day4.txt","r") as file:
     entries = file.readlines()
 
     # first puzzle
@@ -22,8 +22,7 @@ with open("input.txt","r") as file:
 
             # reset
             given_keywords = []
-            if i == len(entries) -1 :
-                print(e)
+            
         else:
             items = e.split(' ')
             for i in items:
@@ -80,14 +79,13 @@ with open("input.txt","r") as file:
                 debug_given_items.sort()
                 #print("b) " + str(valid_passport_count_b)+":"+str(debug_given_items))
                 
-           
             # reset
             given_keywords = []
             debug_given_items=[]
                                
                     
-print("a) valid passports " + str(valid_passport_count_a))              
-print("b) valid passports " + str(valid_passport_count_b))                    
+print("a) valid passports ", valid_passport_count_a+1)
+print("b) valid passports ",valid_passport_count_b)          
     
     
 

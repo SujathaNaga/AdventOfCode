@@ -1,13 +1,12 @@
-#518 is wrong answer
 final_valid_count_a = 0
 final_valid_count_b = 0
 
-with open("input.txt","r") as file:
+with open("../input/day2.txt","r") as file:
     entries = file.readlines()
     
     for e in entries:
         items = e.split(' ')
-        min,max = items[0].split('-')
+        min_value,max_value = items[0].split('-')
         letter = items[1][0]
         password = items[2]
 
@@ -18,7 +17,7 @@ with open("input.txt","r") as file:
             if p == letter:
                 count +=1
 
-        if count >= int(min) and count <= int(max):
+        if count >= int(min_value) and count <= int(max_value):
             final_valid_count_a += 1
 
         # second puzzle
@@ -34,8 +33,8 @@ with open("input.txt","r") as file:
             final_valid_count_b += 1
         
 
-    print(" a) final: " + str(final_valid_count_a))
-    print(" b) final: " + str(final_valid_count_b))
+    print("a)", final_valid_count_a)
+    print("b)", final_valid_count_b)
     
     
 

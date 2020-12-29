@@ -8,7 +8,8 @@ def find_trees_count(slope):
     trees = 0
 
     # get sanitized file contents as a list
-    entries = get_sanitized_file_contents("input.txt")
+    entries = get_file_contents("../input/day3.txt")
+    entries = [e for e in entries if e != '']
     
     # set first row along the slope
     row = slope[1] # y direction

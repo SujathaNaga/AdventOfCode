@@ -5,7 +5,6 @@ import re
 
 highest_seat_id_a = 0
 
-
 def find_index(text, max_value, upper_half_string, lower_half_string):
     start_index = 0 
     end_index = max_value - 1
@@ -20,7 +19,7 @@ def find_index(text, max_value, upper_half_string, lower_half_string):
     return end_index
 
 list_of_seat_ids = []
-with open("input.txt","r") as file:
+with open("../input/day5.txt","r") as file:
     entries = file.readlines()
 
     # first puzzle
@@ -33,7 +32,7 @@ with open("input.txt","r") as file:
     
 print("a) seat id " + str(int(highest_seat_id_a)))
 # find your seat id which is missing from the input file
-print("b) " + str([id for id in range(10,highest_seat_id_a) if id not in list_of_seat_ids]))          
+print("b) " + str([id for id in range(10, highest_seat_id_a) if id not in list_of_seat_ids]))          
     
     
 
