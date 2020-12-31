@@ -23,10 +23,7 @@ ans_map = {}
 for i in range(len(rows)):
     if rows[i] == '':
         # you need to identify the questions to which everyone in a group answered "yes"
-        for l,count in ans_map.items():
-            if count == persons_in_a_group_count:
-                ans_b += 1
-
+        ans_b += sum(count == persons_in_a_group_count for count in ans_map.values())
         # reset
         persons_in_a_group_count= 0
         ans_map = {}

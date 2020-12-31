@@ -1,5 +1,6 @@
 import re
 from collections import defaultdict
+from util import *
 
 input1="""sesenwnenenewseeswwswswwnenewsewsw
 neeenesenwnwwswnenewnwwsewnenwseswesw
@@ -490,6 +491,7 @@ def day():
     return tiles2
     
 #main
+start_profiling()
 for l in lines:
     # find directions in order
     directions=re.findall('(se|sw|ne|nw|e|w)',l)
@@ -515,18 +517,12 @@ for l in lines:
         
     tiles[x,y]=not tiles[x,y]
 
-count=0
-for t in tiles.values():
-    if t:
-        count+=1
+print('a)',sum(t for t in tiles.values()))
+end_profiling()
 
-print('a)',count)
-
+start_profiling()
 for _ in range(100):
     tiles=day()
     
-count=0
-for t in tiles.values():
-    if t:
-        count+=1
-print('b)', count)
+print('b)', sum(t for t in tiles.values()))
+end_profiling()

@@ -50,14 +50,13 @@ def process_paranthesis(math_str, function):
     
     return math_str
 
-total=0
-for line in lines:
-    math_expression_array=process_paranthesis(line,part1).split()
-    total += part1(math_expression_array)
-print('a)', total)
+start_profiling()
+print('a)', sum(part1(process_paranthesis(line,part1).split()) for line in lines))
+      
+end_profiling()
 
-total=0
-for line in lines:
-    math_expression_array=process_paranthesis(line,part2).split()
-    total += part2(math_expression_array)
-print('b)', total)
+start_profiling()
+
+print('b)', sum(part2(process_paranthesis(line,part2).split()) for line in lines))
+
+end_profiling()

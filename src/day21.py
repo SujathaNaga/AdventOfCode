@@ -103,17 +103,10 @@ for a,i in g_all_ing_dict.items():
         print('error',a,i)
 
 # find number of ingredients that does not contain any of the allergents
-count=0
-for l in g_ing_list:
-    count+=len(l)
-
-print(count)
+print('a)',sum(len(l) for l in g_ing_list))
 
 # form string of allergent-ingredient sorted by the allergentname
-finalstring=''
-for a in sorted(g_all_ing_dict.keys()):
-    finalstring+=str(next(iter(g_all_ing_dict[a])))+','
-print(finalstring)
+print('b)', ','.join([str(next(iter(g_all_ing_dict[a]))) for a in sorted(g_all_ing_dict.keys())]))
 
     
     

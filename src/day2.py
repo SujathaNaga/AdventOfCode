@@ -9,14 +9,11 @@ with open("../input/day2.txt","r") as file:
         min_value,max_value = items[0].split('-')
         letter = items[1][0]
         password = items[2]
-
+    
         # first puzzle
         # the letter should be present between min and max times in the password string
-        count = 0
-        for p in password:
-            if p == letter:
-                count +=1
-
+        count=sum(p==letter for p in password)
+       
         if count >= int(min_value) and count <= int(max_value):
             final_valid_count_a += 1
 

@@ -29,11 +29,7 @@ for i in range(len(lines)):
             i+=1
 
 
-sum=0
-for v in memory_dict.values():
-    sum += v
-
-print("a) " +str(sum))
+print("a) ", sum(v for v in memory_dict.values()))
 
 memory_dict=defaultdict(lambda:0)
 for i in range(len(lines)):
@@ -77,11 +73,7 @@ for i in range(len(lines)):
                 memory_dict[int('0b'+str(''.join(m)), base=2)] = int(v)
             i+=1
 
-sum=0
-for v in memory_dict.values():
-    sum += v
-
-print("b) " +str(sum))
+print("a) ", sum(v for v in memory_dict.values()))
 
 
 
