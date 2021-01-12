@@ -40,21 +40,16 @@ for i in range(len(lines)):
     move_w(d)
     
     if d == 'L':
-        index = rotation_dir_list_L.index(facing_dir)
-        while v > 0:
-            v -= 90
-            index = (index + 1) % len(rotation_dir_list_L)
-        facing_dir = rotation_dir_list_L[index]
+        assert v % 90 == 0
+        facing_dir = rotation_dir_list_L[(rotation_dir_list_L.index(facing_dir) +  v // 90) % len(rotation_dir_list_L)]
     elif d == 'R':
-        index = rotation_dir_list_R.index(facing_dir)
-        while v > 0:
-            v -= 90
-            index = (index + 1) % len(rotation_dir_list_R)
-        facing_dir = rotation_dir_list_R[index]
+        assert v % 90 == 0
+        facing_dir = rotation_dir_list_R[(rotation_dir_list_R.index(facing_dir) +  v // 90) % len(rotation_dir_list_R)]
     elif d == 'F':
         move_w(facing_dir)
     
-print("a) " + str(abs(wx) + abs(wy)))
+print('a)',abs(wx) + abs(wy))
+
 end_profiling()
 
 ####################################
@@ -83,6 +78,7 @@ for i in range(len(lines)):
         elif d == 'W':
             wx -= v
     elif d == 'R' or d == 'L':
+        assert v % 90 == 0
         if d  == 'R':
             while v > 0:
                 v -= 90
@@ -99,7 +95,5 @@ for i in range(len(lines)):
         finalx += wx * v
         finaly += wy * v
     
-total = abs(finalx) + abs(finaly)
-
-print("b) " + str(total))
+print('b)', abs(finalx) + abs(finaly))
 end_profiling()
