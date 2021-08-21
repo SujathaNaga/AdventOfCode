@@ -1,35 +1,37 @@
 from util import *
 from collections import defaultdict
+from parse import *
 
 lines = get_file_contents("../input/day14-sample.txt", False)
-lines = get_file_contents("../input/day14.txt", False)
+#lines = get_file_contents("../input/day14.txt", False)
 
-memory_dict=defaultdict(lambda:0)
-for i in range(len(lines)):
-    f,s = lines[i].split(' = ')
-    if lines[i].find("mask") != -1:
-        mask = s
-        i+=1
-        while i < len(lines) and lines[i].find("mask") == -1:
-            f,v = lines[i].split(' = ')
-            memory=f[4:]
+#print(lines)
+mem={}
+mask_int_0 = 0
+mask_int_1 = 0
+for row in lines:
+    p = parse('mask = {}', row)
+    if p:
+        # care only about 0 in the mask. flip the zeros to ones. flip everything else to 0
+        mask_int_0 = int(p[0].replace('1', 'X').replace('0','1').replace('X','0'), 2)
 
-            # create a list of single characters denoting 0 or 1 of the binary value of the value with leading zeros
-            v= list(str(bin(int(v)).replace('0b','')))
-            v = ['0'] * (len(mask)-len(v)) + v
+        # care only about the 1 in the mask. flip everything else to 0
+        mask_int_1 = int(p[0].replace('0', 'X').replace('X','0'), 2)
+    else:
+        a,b = parse('mem[{:d}] = {:d}', row)
 
-            binindex = len(v)-1
-            for maskindex in range(len(mask)-1, -1,-1):
-                if mask[maskindex] != 'X':
-                    v[binindex]= mask[maskindex]
-                binindex-=1
-            
-            # convert from string list to binary string to integer before saving
-            memory_dict[memory]=int('0b'+str(''.join(v)),base=2)
-            i+=1
+        #  a 0 or 1 overwrites the corresponding bit in the value
+
+        # invert the ones to zeros and zeros to ones, and & with value so that the 0 is set at the bit position
+        b &= ~mask_int_0
 
 
-print("a) ", sum(v for v in memory_dict.values()))
+        # set 1 at the bit position
+        b |= mask_int_1
+        
+        mem[a] = b
+
+print('a)',sum(mem.values()))
 
 memory_dict=defaultdict(lambda:0)
 for i in range(len(lines)):
