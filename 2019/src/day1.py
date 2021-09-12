@@ -1,6 +1,7 @@
 # Thanks to https://github.com/Hussain-70/Baby-Step-Giant/blob/main/Q3.py
 import math
 
+# https://adventofcode.com/2019/day/1
 data ="""12
 14
 1969
