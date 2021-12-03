@@ -1016,7 +1016,7 @@ input1="""00100
 00010
 01010"""
 
-entries_str = input1.split('\n')
+# entries_str = input1.split('\n')
 entries_str = input2.split('\n')
 entries = list(map(lambda e: eval('0b'+e), entries_str))
 
@@ -1043,8 +1043,6 @@ print('a', eval('0b'+gamma)*eval('0b'+epsilon))
 
 # part two
 
-oxy=''
-co2=''
 entries = list(map(lambda e: eval('0b'+e), entries_str))
 oxyentries=copy.deepcopy(entries)
 co2entries=copy.deepcopy(entries)
