@@ -6,6 +6,7 @@ import re
 from itertools import chain
 import math
 from typing import DefaultDict
+import time
 
 
 input2="""3,3,5,1,1,3,4,2,3,4,3,1,1,3,3,1,5,4,4,1,4,1,1,1,3,3,2,3,3,4,2,5,1,4,1,2,2,4,2,5,1,2,2,1,1,1,1,4,5,4,3,1,4,4,4,5,1,1,4,3,4,2,1,1,1,1,5,2,1,4,2,4,2,5,5,5,3,3,5,4,5,1,1,5,5,5,2,1,3,1,1,2,2,2,2,1,1,2,1,5,1,2,1,2,5,5,2,1,1,4,2,1,4,2,1,1,1,4,2,5,1,5,1,1,3,1,4,3,1,3,2,1,3,1,4,1,2,1,5,1,2,1,4,4,1,3,1,1,1,1,1,5,2,1,5,5,5,3,3,1,2,4,3,2,2,2,2,2,4,3,4,4,4,1,2,2,3,1,1,4,1,1,1,2,1,4,2,1,2,1,1,2,1,5,1,1,3,1,4,3,2,1,1,1,5,4,1,2,5,2,2,1,1,1,1,2,3,3,2,5,1,2,1,2,3,4,3,2,1,1,2,4,3,3,1,1,2,5,1,3,3,4,2,3,1,2,1,4,3,2,2,1,1,2,1,4,2,4,1,4,1,4,4,1,4,4,5,4,1,1,1,3,1,1,1,4,3,5,1,1,1,3,4,1,1,4,3,1,4,1,1,5,1,2,2,5,5,2,1,5"""
@@ -48,9 +49,11 @@ def funca(days_max, lanternfish):
             else:
                 lanternfish[fishindex]-=1
     
-    print('ans',len(lanternfish))
+    print('  ans',len(lanternfish))
 
-# funca(80, lanternfish)
+start=time.time()
+funca(80, lanternfish)
+print('time',time.time()-start)
 # funca(256, lanternfish)
 
 # optimized
@@ -70,11 +73,15 @@ def func2(days_max, lanternfish):
             else:
                 del fishset[key]
                 fishset[key-1]+=value
-        
+
         fishset[6]+=resetfish
         fishset[8]+=resetfish
     
-    print('ans2',sum([value for value in fishset.values()]))
+    print('  ans2',sum([value for value in fishset.values()]))
 
+start=time.time()
 func2(80,lanternfish)
+print('time',time.time()-start)
+start=time.time()
 func2(256,lanternfish)
+print('time',time.time()-start)
