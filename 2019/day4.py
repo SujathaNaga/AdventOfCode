@@ -4,7 +4,6 @@
 input2="125730-579381"
 
 begin,end = list(map(int,input2.split('-')))
-print(begin, end)
 
 count = 0
 for i in range(begin, end+1):
@@ -21,9 +20,6 @@ for i in range(begin, end+1):
 
 print('a', count)
 
-# 1167 too low
-# 1174 too high
-
 import re
 from collections import Counter
 
@@ -32,9 +28,6 @@ lower=begin
 upper=end
 
 for i in range(lower, upper + 1):
-    print((s := str(i)))
-    print("".join(sorted(s)))
-    print('----')
     if (s := str(i)) == "".join(sorted(s)):
         c = set(Counter(s).values())
         count += bool(c & {2})

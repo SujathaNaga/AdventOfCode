@@ -1,3 +1,5 @@
 
 *.pyc
 src/log.txt
+2021/info.py
+*.txt
