@@ -228,6 +228,8 @@ def funcb(lines):
         
         # > 9 value  becomes 0
         lines=[[0 if v > 9 else v for v in line] for line in lines]
+        
+        # add everything to check if all octopus have flashed
         total=sum(sum(line) for line in lines)
         if total==0:
             # all flash
