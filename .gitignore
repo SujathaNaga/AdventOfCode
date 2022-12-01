@@ -6,4 +6,7 @@ src/log.txt
 .vscode/launch.json
 /2017/pysln/.vs/pysln
 /2022/pysln/.vs/pysln/v17
+/2022C/
 /.vs
+
+*.code-workspace
