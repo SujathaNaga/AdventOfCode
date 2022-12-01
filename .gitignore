@@ -4,3 +4,6 @@ src/log.txt
 2021/info.py
 *.txt
 .vscode/launch.json
+/2017/pysln/.vs/pysln
+/2022/pysln/.vs/pysln/v17
+/.vs
