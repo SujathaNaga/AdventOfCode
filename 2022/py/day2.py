@@ -2502,30 +2502,26 @@ B X"""
 input2 = """A Y
 B X
 C Z"""
-# A - ROCK
-# B- PAPER 
-# C- SCISSOR
+
+
 win_map={'A':'C', 'C':'B', 'B':'A'} #A beats C
-points_map={'A':1,'X':1,'B':2,'Y':2,'C':3,'Z':3}
+points_map={'A':1,'B':2,'C':3}
 xyz_map={'X':'A','Y':'B','Z':'C'}
 
 total=0
 for line in input.split('\n'):
     p1,p2=line.split(' ')
     p2=xyz_map[p2]
-    p2point=points_map[p2]
+    total+=points_map[p2]
     
     if p1==p2:
-        p2point+=3
+        total+=3 # draw
     elif win_map[p1] != p2:
-        p2point+=6
-    total+=p2point
-
-    
+        total+=6 # win
 print('a',total)
 # win map needs to reverse
-p2_win_map={'A':'B', 'C':'A', 'B':'C'} #A beats C
-p2_lose_map={'A':'C', 'C':'B', 'B':'A'} #A beats C
+p2_win_map={'A':'B', 'C':'A', 'B':'C'}
+p2_lose_map={'A':'C', 'C':'B', 'B':'A'}
 
 total=0
 for line in input.split('\n'):
