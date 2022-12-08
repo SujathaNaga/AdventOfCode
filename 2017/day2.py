@@ -31,13 +31,10 @@ for line in lines:
     found=False
     for i in range(len(values)):
         for j in range(len(values)):
-            if i!=j:
-                if values[i] >= values[j]:
-                    rem=values[i]%values[j]
-                    if rem==0:
-                        total+=(values[i]/values[j])
-                        found=True
-                        break
+            if i!=j and values[i] >= values[j] and (values[i]%values[j])==0:
+                total+=(values[i]/values[j])
+                found=True
+                break
         if found:
             break
 print(total)

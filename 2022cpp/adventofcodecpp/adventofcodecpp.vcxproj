@@ -129,7 +129,7 @@
   <ItemGroup>
     <ClCompile Include="adventofcodecpp.cpp" />
     <ClCompile Include="common.cpp" />
-    <ClCompile Include="day7.cpp" />
+    <ClCompile Include="day2-2017.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h" />
