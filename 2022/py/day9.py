@@ -1,5 +1,6 @@
 import sys
 import math
+from dataclasses import dataclass
 
 input="""R 4
 U 4
@@ -2020,7 +2021,11 @@ U 11
 L 15
 D 15"""
 
+@dataclass
 class vec2:
+    __slots__ = 'x', 'y'
+    x: int
+    y: int
     def __init__(self,x,y) -> None:
         self.x=x
         self.y=y
@@ -2128,8 +2133,8 @@ for line in lines:
             if ki == len(knots)-1:
                 tail_visits.add((knots[ki].x, knots[ki].y))
     # debug
-    # print(line)
-    # for i in range(len(knots)):
-    #     print(i, '=', knots[i].x, knots[i].y)
+    print(line)
+    for i in range(len(knots)):
+        print(i, '=', knots[i])
 
 print('b',len(tail_visits))
