@@ -1,6 +1,8 @@
 import sys
 import math
 from dataclasses import dataclass
+import pygame
+
 
 input="""R 4
 U 4
@@ -2021,6 +2023,10 @@ U 11
 L 15
 D 15"""
 
+pygame.init()
+screen = pygame.display.set_mode([800,800])
+running = True
+
 @dataclass
 class vec2:
     __slots__ = 'x', 'y'
@@ -2035,7 +2041,17 @@ head = vec2(0,0)
 headprevious = vec2(0,0)
 tail = vec2(0,0)
 tail_visits=set(tuple())
-for line in lines:
+lineindex=0
+countindex=0
+center = vec2(screen.get_width()/2,screen.get_height()/2)
+while running and lineindex < len(lines):
+    for e in pygame.event.get():
+        if e.type == pygame.QUIT:
+            running = False
+    
+    screen.fill((122,122,122))
+
+    line=lines[lineindex]
     dir,count = line.split(' ')
     count=int(count)
     if dir=='R':
@@ -2051,7 +2067,7 @@ for line in lines:
         xinc=-1
         yinc=0
 
-    for c in range(count):
+    if countindex < count:
         headprevious.x,headprevious.y=head.x,head.y
         head.x+=xinc
         head.y+=yinc
@@ -2061,14 +2077,37 @@ for line in lines:
             tail.y=headprevious.y
         tail_visits.add((tail.x, tail.y))
 
+        # Draw a solid blue circle in the center
+        # pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)
+        # pygame.draw.circle(screen, (0, 0, 255), (head.x+center.x, head.y+center.y), 2)
+        # pygame.draw.circle(screen, (0, 255, 0), (tail.x+center.x+5, tail.y+center.y+5), 2)
+
+        # Flip the display
+        # pygame.display.flip()
+        countindex+=1
+    
+    if countindex == count:
+        # reset
+        countindex=0
+        lineindex+=1
+
+
 print('a',len(tail_visits))
 
 tail_visits=set(tuple())
 knots=[]
 for i in range(10):
     knots.append(vec2(0,0))
+lineindex=0
+countindex=0
+while running and lineindex < len(lines):
+    for e in pygame.event.get():
+        if e.type == pygame.QUIT:
+            running = False
+    
+    screen.fill((122,122,122))
 
-for line in lines:
+    line=lines[lineindex]
     dir,count = line.split(' ')
     count=int(count)
     if dir=='R':
@@ -2084,7 +2123,7 @@ for line in lines:
         xinc=-1
         yinc=0
 
-    for c in range(count):
+    if countindex < count:
         # head
         knots[0].x+=xinc
         knots[0].y+=yinc
@@ -2132,9 +2171,20 @@ for line in lines:
 
             if ki == len(knots)-1:
                 tail_visits.add((knots[ki].x, knots[ki].y))
-    # debug
-    # print(line)
-    # for i in range(len(knots)):
-    #     print(i, '=', knots[i])
+        
+        
+        for ki in range(len(knots)):
+            # Draw a solid blue circle in the center
+            pygame.draw.rect(screen, (0,255-(ki*10), 255-(ki*20)), 
+                    pygame.Rect(knots[ki].x+center.x+(ki*2), knots[ki].y+center.x+(ki*2), 10,10)
+                    )
+    countindex+=1
+    if countindex == count:
+        countindex=0
+        lineindex+=1
 
+    # Flip the display
+    pygame.display.flip()            
+        
+pygame.quit()
 print('b',len(tail_visits))
