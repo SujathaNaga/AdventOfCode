@@ -7,7 +7,8 @@ extern void day7();
 extern void day2_2017();
 extern void day8();
 extern void day9();
+extern void day10();
 int main(int argc, char** argv)
 {
-	day9();
+	day10();
 }
