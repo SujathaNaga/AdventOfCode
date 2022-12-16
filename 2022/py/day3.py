@@ -309,7 +309,7 @@ rhPrSgfvJPfmwsTpLcsV"""
 total=0
 value_a=ord('a') # ord=unicode code
 value_A=ord('A')
-for line in input.split('\n'):
+for line in input.splitlines():
     p1,p2=line[:int(len(line)/2)],line[int(len(line)/2):]
     priorities=set()
     for c in p1:
@@ -325,7 +325,7 @@ for line in input.split('\n'):
 print('a',total)
 
 total=0
-lines=input.split('\n')
+lines=input.splitlines()
 i=0
 while i < len(lines) - 2:
     p1 = lines[i]

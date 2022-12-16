@@ -198,8 +198,7 @@ class vec2:
         self.x=x
         self.y=y
 
-lines=input.split('\n')
-lines=input.split('\n')
+lines=input.splitlines()
 rocks_dict_y=defaultdict(set)
 max_y=0
 for line in lines:

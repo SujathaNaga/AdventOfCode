@@ -545,7 +545,7 @@ total=0
 stackindex=0
 for i in range(8):
     stacks.append([])
-lines=input.split('\n')
+lines=input.splitlines()
 for line in lines:
     stackindex=0
     if line=='===':

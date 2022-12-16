@@ -89,7 +89,7 @@ Monkey 7:
     If true: throw to monkey 1
     If false: throw to monkey 3"""
 
-linesoriginal=input.split('\n')
+linesoriginal=input.splitlines()
 
 @dataclass
 class Monkey:

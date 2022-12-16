@@ -2239,7 +2239,7 @@ input="""6750
 
 max = 0
 elf = 0
-for line in input.split('\n'):
+for line in input.splitlines():
     if line == '':
         max = elf if elf > max else max
         elf=0
@@ -2251,7 +2251,7 @@ print('a',max)
 
 max = []
 elf = 0
-for line in input.split('\n'):
+for line in input.splitlines():
     if line == '':
         s=next((elf for m in max if elf > m), None)
         if s:

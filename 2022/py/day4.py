@@ -1006,7 +1006,7 @@ input="""20-45,13-44
 63-65,2-64
 42-91,42-73"""
 total=0
-for line in input.split('\n'):
+for line in input.splitlines():
     line=line.strip()
     p1,p2=line.split(',')
     p11,p12=map(int, p1.split('-'))
@@ -1021,7 +1021,7 @@ for line in input.split('\n'):
 print('a',total)
 
 total=0
-for line in input.split('\n'):
+for line in input.splitlines():
     line=line.strip()
     p1,p2=line.split(',')
     p11,p12=map(int, p1.split('-'))

@@ -293,7 +293,7 @@ noop
 addx -17
 noop"""
 
-linesoriginal=input.split('\n')
+linesoriginal=input.splitlines()
 lines=[]
 def find_a(final_cycle):
     global lines

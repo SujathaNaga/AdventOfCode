@@ -509,7 +509,7 @@ def check_a(left, right):
 inputsections=input.split('\n\n')
 sections=[]
 for section in inputsections:
-    a,b=section.split('\n')
+    a,b=section.splitlines()
     sections.append(Section(eval(a),eval(b)))
 
 total=sum(index for index, v in enumerate(sections, 1) if check_a(v.left, v.right)<=0)

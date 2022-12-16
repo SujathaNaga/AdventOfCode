@@ -1062,7 +1062,7 @@ def calculate_a(dirmap):
     return total
 
 globaldirmap={}
-lines=input.split('\n')
+lines=input.splitlines()
 dir=''
 i=0
 dirmap=globaldirmap

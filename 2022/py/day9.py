@@ -2030,7 +2030,7 @@ class vec2:
         self.x=x
         self.y=y
 
-lines=input.split('\n')
+lines=input.splitlines()
 head = vec2(0,0)
 headprevious = vec2(0,0)
 tail = vec2(0,0)

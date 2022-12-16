@@ -2509,7 +2509,7 @@ points_map={'A':1,'B':2,'C':3}
 xyz_map={'X':'A','Y':'B','Z':'C'}
 
 total=0
-for line in input.split('\n'):
+for line in input.splitlines():
     p1,p2=line.split(' ')
     p2=xyz_map[p2]
     total+=points_map[p2]
@@ -2524,7 +2524,7 @@ p2_win_map={'A':'B', 'C':'A', 'B':'C'}
 p2_lose_map={'A':'C', 'C':'B', 'B':'A'}
 
 total=0
-for line in input.split('\n'):
+for line in input.splitlines():
     p1,p2=line.split(' ')
     if p2=='X':
         # lose

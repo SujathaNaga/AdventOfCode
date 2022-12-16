@@ -298,7 +298,7 @@ noop"""
 pygame.init()
 screen=pygame.display.set_mode([800,600])
 running=True
-linesoriginal=input.split('\n')
+linesoriginal=input.splitlines())))))))
 lines=[]
 def find_a(final_cycle):
     global lines
