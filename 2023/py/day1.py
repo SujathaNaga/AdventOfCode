@@ -1012,19 +1012,29 @@ four289"""
 
 
 lines=input.splitlines()
-start_time=time()
-total=0
-for line in lines:
-    numbers = re.findall(r'\d+', line)
-    numbers = [z for x in numbers for y in list(x) for z in y]    
-    n = numbers[0] + numbers[-1]
-    total+=int(n)
+number_words = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+
+def convert_to_int(s):
+    if s in number_words:
+        return number_words.index(s)
+    else:
+        return int(s)    
     
-print(total)
-print('elapsed',(time()-start_time))
+def day1(pattern):
+    start_time=time()
+    total=0
+    for line in lines:
+        first = re.search(pattern,line)
+        last = re.search(pattern,line[::-1])
+        n = convert_to_int(first.group()) * 10 + convert_to_int(last.group())        
+        total+=n
+    
+    print(total)
+    print('elapsed',(time()-start_time))
+
+day1(r"\d");
 
 # B
-number_words = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 start_time=time()
 total=0
 for line in lines:
