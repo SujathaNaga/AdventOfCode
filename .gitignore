@@ -13,4 +13,7 @@ src/log.txt
 *.filters
 2022cpp/adventofcodecpp/x64/Debug/
 2022cpp/adventofcodecpp/x64/Release/
+2023/csharp/AOC2023/bin
+2023/csharp/AOC2023/obj
+2023/csharp/AOC2023/.vs
 *.code-workspace
