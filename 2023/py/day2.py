@@ -149,7 +149,7 @@ def day2_b():
     power=0
     for line in lines:
         sets = line.split(': ')[1].split('; ')        
-        max_red_line=0;max_green_line=0;max_blue_line=0        
+        max_red_line=0;max_green_line=0;max_blue_line=0
         for a in sets:            
             cubes={}
             for event in a.split(', '):

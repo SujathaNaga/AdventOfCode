@@ -73,7 +73,7 @@ namespace AOC2023
                 Window.Current.Activate();
             }
 
-            Day3 d = new Day3();
+            var d = new Day4();
             d.Solve();
 
         }

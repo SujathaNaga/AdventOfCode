@@ -218,7 +218,6 @@ namespace AOC2023
          num.col <= symbol.col + symbol.text.Length; // number to left of symbol
 
 
-
         private IEnumerable<CustomStruct> Parse(string[] rows, Regex rx)
         {
             foreach(var row in Enumerable.Range(0, rows.Length))
