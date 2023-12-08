@@ -219,11 +219,9 @@ def day4():
     total=0
     for line in input:
         matches=calculate(line)
-        total+=0 if not matches else 2**(matches-1)
-        
+        total+=0 if not matches else 2**(matches-1)        
     print(total)
-    print('elapsed',(time()-start_time))
-    
+    print('elapsed',(time()-start_time))    
 
 
 def day4_b():
