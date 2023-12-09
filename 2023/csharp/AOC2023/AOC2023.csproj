@@ -122,7 +122,9 @@
     <Compile Include="Day1\Day1.cs" />
     <Compile Include="Day2\Day2.cs" />
     <Compile Include="Day3\Day3.cs" />
+    <Compile Include="Day8\Day8.cs" />
     <Compile Include="Day4\Day4.cs" />
+    <Compile Include="Day9\Day9.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
