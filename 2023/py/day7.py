@@ -15,6 +15,7 @@ T55J5 684
 KK677 28
 KTJJT 220
 QQQJA 483"""
+
 input="""53AQ3 698
 555A5 490
 KQQ8K 338
@@ -1018,6 +1019,10 @@ TT3T3 711
 
 card_type_order=['2','3','4','5','6','7','8','9','T','J','Q','K','A']
 card_type_custom_order=['0','1','2','3','4','5','6','7','8','9','A','B','C']
+
+card_type_order_b=['J','2','3','4','5','6','7','8','9','T','Q','K','A']
+card_type_custom_order_b=['0','1','2','3','4','5','6','7','8','9','A','B','C']
+
 FIVE_ORDER=6
 FOUR_ORDER=5
 FULL_HOUSE=4
@@ -1035,7 +1040,7 @@ for line in input:
     input_map[k]={'bid':int(v)}
 
             
-def find_card_type(card):
+def find_card_type(card, puzzle_type):
     duplicate_map=defaultdict(int)
     for c in card:
         if c not in duplicate_map:
@@ -1045,6 +1050,15 @@ def find_card_type(card):
     
     duplicate_map=dict(reversed(sorted(duplicate_map.items(), key=lambda x:x[1])))
     
+    if puzzle_type == 'B' and 'J' in duplicate_map.keys():
+        # if first sorted key is J move on to next key
+        index = 0 if list(duplicate_map.keys())[0] != 'J' else 1
+        # if not all J
+        if index < len(duplicate_map):
+            first=list(duplicate_map.keys())[index]        
+            duplicate_map[first] += duplicate_map['J']
+            del duplicate_map['J']
+            
     if 5 in duplicate_map.values():
         return FIVE_ORDER
     if 4 in duplicate_map.values():
@@ -1062,65 +1076,48 @@ def find_card_type(card):
     else:
         print("error. unable to find type", card, duplicate_map)
         exit(1)    
-
         
-def find_order_within_same_type(same_type_keys, input_map):    
-    new_keys=[]
-    for k in same_type_keys:
-        s=''
-        for c in k:
-            s+=card_type_custom_order[card_type_order.index(c)]
-        new_keys.append(s)
-    
+        
+def find_order_within_same_type(same_type_keys, input_map, puzzle_type):
+    card_type=card_type_order if puzzle_type == 'A' else card_type_order_b
+    card_type_custom = card_type_custom_order if puzzle_type == 'A' else card_type_custom_order_b
+   
+    new_keys=[''.join([card_type_custom[card_type.index(c)] for c in k]) for k in same_type_keys]
     new_keys_sorted=sorted(new_keys)
-    old_keys_sorted=[]
+
     #  return back old list with sorted order
-    for k in new_keys_sorted:
-        old_keys_sorted.append(same_type_keys[new_keys.index(k)])
-    
-    return old_keys_sorted
+    return [same_type_keys[new_keys.index(k)] for k in new_keys_sorted]
         
-def day7():
+        
+def day7(puzzle_type):
     global input_map
     start_time=time()
     for card,_ in input_map.items():
-        input_map[card]['type_index']=find_card_type(card)
+        input_map[card]['type_index']=find_card_type(card, puzzle_type)
     
     # order by type
     input_map_list=sorted(input_map.items(), key=lambda x:x[1]['type_index'])
-    # find rank
     
     input_map=dict(input_map_list)
     i=0
-    same_type_map=defaultdict(list)
     rank=1
     while i < len(input_map_list):
-        t=input_map_list[i][1]['type_index']
-        same_type_keys=[input_map_list[i][0]]
-        for k in range(i+1, len(input_map_list)):
-            if input_map_list[k][1]['type_index'] == t:
-                same_type_keys.append(input_map_list[k][0])                
-            else:
-                break
-        
+        # get all same type cards
+        same_type_keys = [k for k,v in input_map.items() if v['type_index'] == input_map_list[i][1]['type_index']]
         
         if len(same_type_keys) == 1:
-            k=input_map_list[i][0]
-            input_map[k]['rank']=rank
+            input_map[same_type_keys[0]]['rank']=rank
             rank+=1
         else:                                        
-            sorted_keys=find_order_within_same_type(same_type_keys, input_map)
+            sorted_keys=find_order_within_same_type(same_type_keys, input_map, puzzle_type)
             for k in sorted_keys:
                 input_map[k]['rank']=rank
                 rank+=1
         
         i+=len(same_type_keys)
         
-    total=0
-    for k,v in input_map.items():
-        total+=v['bid']*v['rank']
-    
-    print(total)
+    print(sum([v['bid']*v['rank'] for _,v in input_map.items()]))
     print('elapsed',(time()-start_time))    
     
-day7()
+day7("A")
+day7("B")
