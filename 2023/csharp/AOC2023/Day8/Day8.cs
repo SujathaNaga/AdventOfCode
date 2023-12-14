@@ -754,7 +754,6 @@ DBR = (NXB, MLX)";
 
         private void SolveA(List<int> directions, Dictionary<string, List<string>> inputMap)
         {
-            var total = 0;
             var steps = 0;
             var key = "AAA";
             var directionsIndex = 0;
