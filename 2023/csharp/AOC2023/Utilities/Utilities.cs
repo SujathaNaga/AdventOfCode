@@ -44,4 +44,38 @@ namespace AOC2023.Utilities
             }
         }
 
+    public struct ItemStringValue
+    {
+        public string stringValue;
+        public int intValue;
+
+        public ItemStringValue(string xvalue, int yvalue)
+        {
+            stringValue = xvalue;
+            intValue = yvalue;
+        }
+        public bool isValid()
+        {
+            return stringValue != "";
+        }
+
+        public override bool Equals(Object other)
+        {
+            return stringValue == ((ItemStringValue)other).stringValue && intValue == ((ItemStringValue)other).intValue;
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+        static public bool operator ==(ItemStringValue first, ItemStringValue second)
+        {
+            return first.stringValue == second.stringValue;
+        }
+
+        static public bool operator !=(ItemStringValue first, ItemStringValue second)
+        {
+            return first.stringValue != second.stringValue;
+        }       
+    }
+
 }

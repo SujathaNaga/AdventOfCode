@@ -122,6 +122,8 @@
     <Compile Include="Day10\Day10.cs" />
     <Compile Include="Day11\Day11.cs" />
     <Compile Include="Day13\Day13.cs" />
+    <Compile Include="Day15\Day15.cs" />
+    <Compile Include="Day18\Day18.cs" />
     <Compile Include="Day1\Day1.cs" />
     <Compile Include="Day2\Day2.cs" />
     <Compile Include="Day3\Day3.cs" />
